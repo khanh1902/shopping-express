@@ -6,7 +6,7 @@ const userRouter = require("./routes/user.route.js");
 const authRouter = require("./routes/auth.route.js");
 const categoryRouter = require("./routes/category.route.js");
 const cookieParser = require("cookie-parser");
-const errorMiddleware = require("./middlewares/errors.js")
+const errorHandler = require("./middlewares/errors.js")
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use("/api", userRouter);
 app.use("/api", authRouter);
 app.use("/api", categoryRouter);
 
-app.use(errorMiddleware);
+app.use(errorHandler);
 
 // port
 const { port } = process.env;

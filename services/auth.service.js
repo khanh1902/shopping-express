@@ -28,22 +28,16 @@ const signup = async (body) => {
 const signin = async (body) => {
   if (body.email == null || body.password == null) {
     throw new ErrorHandler(400, "Please enter email and password");
-
-    // return {statusCode: 400, result: {success: false, body: "Please enter email and password"}}
   }
 
   const user = await Users.findOne({ where: { email: body.email } });
   if (!user) {
     throw new ErrorHandler(404, "Email does not exists");
-
-    // return {statusCode: 400, result: {success: false, body: "Email does not exists"}}
   }
 
   const isCheckPassword = await bcrypt.compare(body.password, user.password);
   if (!isCheckPassword) {
     throw new ErrorHandler(400, "Password is incorrect");
-
-    // return {statusCode: 400, result: {success: false, body: "Password is incorrect"}}
   }
 
   // Create token

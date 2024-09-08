@@ -7,23 +7,17 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    pool: {
-      max: 10, // max pool connect
-      min: 0, // min pool connect
-      acquire: 30000, // time try connect before err
-      idle: 10000, // time close connect if idle
-    },
   }
 );
 
-// sequelize
-//   .authenticate() // check connect
-//   .then(() => {
-//     console.log("Connection has been established successfully.");
-//   })
-//   .catch((error) => {
-//     console.error("Unable to connect to the database: ", error);
-//   });
+sequelize
+  .authenticate() // check connect
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((error) => {
+    console.error("Unable to connect to the database: ", error);
+  });
 
 const db = {};
 
